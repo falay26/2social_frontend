@@ -12,7 +12,15 @@ import DeleteModal from "./Modals/DeleteModal";
 //Helpers
 import { getCityFromId } from "../constants/Cities";
 
-const ItemReturner = ({ value, data, onEdit, setOpen, setId }) => {
+const ItemReturner = ({
+  value,
+  data,
+  onEdit,
+  setOpen,
+  setOpen1,
+  setId,
+  setSuspend,
+}) => {
   if (value.is_phone) {
     let formatted_phone_number =
       "+90 " +
@@ -147,6 +155,43 @@ const ItemReturner = ({ value, data, onEdit, setOpen, setId }) => {
     return <td>{formatted_city}</td>;
   } else if (value.is_array) {
     return <td>{data[value.value].length}</td>;
+  } else if (value.is_suspend) {
+    return (
+      <td>
+        <div className="suspend_container">
+          <div
+            className="suspend_button"
+            onClick={() => {
+              setSuspend(1);
+              setId(data._id);
+              setOpen1(true);
+            }}
+          >
+            1
+          </div>
+          <div
+            className="suspend_button"
+            onClick={() => {
+              setSuspend(3);
+              setId(data._id);
+              setOpen1(true);
+            }}
+          >
+            3
+          </div>
+          <div
+            className="suspend_button"
+            onClick={() => {
+              setSuspend(6);
+              setId(data._id);
+              setOpen1(true);
+            }}
+          >
+            6
+          </div>
+        </div>
+      </td>
+    );
   } else {
     return (
       <td>
@@ -222,9 +267,12 @@ const TableContainerUsers = ({
   loading,
   onEdit,
   onDelete,
+  onSuspend,
   setId,
+  setSuspend,
 }) => {
   const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   const data_per_page = 10;
@@ -275,7 +323,9 @@ const TableContainerUsers = ({
                             data={user}
                             onEdit={onEdit}
                             setOpen={setOpen}
+                            setOpen1={setOpen1}
                             setId={setId}
+                            setSuspend={setSuspend}
                           />
                         );
                       }
@@ -300,6 +350,16 @@ const TableContainerUsers = ({
         onSubmit={() => {
           setOpen(false);
           onDelete();
+        }}
+      />
+      <DeleteModal
+        open={open1}
+        onClose={() => {
+          setOpen1(false);
+        }}
+        onSubmit={() => {
+          setOpen1(false);
+          onSuspend();
         }}
       />
     </>

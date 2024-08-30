@@ -47,6 +47,7 @@ const Panel = ({ language }) => {
         }
       );
       if (response.status === 200) {
+        console.log(response);
         setOtp(response.data.otp);
         setOtpVisible(true);
       }

@@ -7,7 +7,7 @@ import Loading from "../components/Loading";
 //API
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
-const APIS = { get: "/get_all_users" };
+const APIS = { get: "/get_all_users", suspend: "suspend_user" };
 
 const PanelScreen = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -62,6 +62,10 @@ const PanelScreen = () => {
     {
       title: "Kısıtlama",
       value: "suspended_until",
+    },
+    {
+      title: "Askıya Al",
+      is_suspend: true,
     },
   ];
 
@@ -119,6 +123,35 @@ const PanelScreen = () => {
     }
   }, [data, signFilter0, signFilter1]);
 
+  const suspendHandler = async () => {
+    try {
+      let parameters = {
+        user_id: id,
+        month: suspendTime,
+      };
+      const response = await axiosPrivate.post(
+        APIS.suspend,
+        JSON.stringify(parameters),
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      setLoading(false);
+      if (response.status === 200) {
+        alert("kullanıcı başarıyla askıya alındı.");
+      }
+    } catch (err) {
+      console.log(err);
+      //alert(err);
+      setLoading(false);
+      // TODO: Errorhandling..
+    }
+  };
+
   return (
     <PanelContainer>
       {loading ? (
@@ -126,7 +159,14 @@ const PanelScreen = () => {
       ) : (
         <>
           <PageTitle title={"Üyeler"} total={filteredData.length} />
-          <Table values={values} data={filteredData} loading={false} />
+          <Table
+            values={values}
+            data={filteredData}
+            loading={false}
+            onSuspend={suspendHandler}
+            setSuspend={setSuspendTime}
+            setId={setId}
+          />
         </>
       )}
     </PanelContainer>
