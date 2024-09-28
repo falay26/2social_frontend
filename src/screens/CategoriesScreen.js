@@ -37,6 +37,7 @@ const CategoriesScreen = () => {
   const [descriptionEN, setDescriptionEN] = useState("");
   const [image, setImage] = useState("");
   const [step, setStep] = useState("");
+  const [limit, setLimit] = useState("");
 
   useEffect(() => {
     fetchDatas();
@@ -129,6 +130,7 @@ const CategoriesScreen = () => {
         },
         image: image,
         step_number: step,
+        daily_limit: limit,
       };
       const response = await axiosPrivate.post(
         APIS.add,
@@ -168,6 +170,7 @@ const CategoriesScreen = () => {
         },
         image: image,
         step_number: step,
+        daily_limit: limit,
       };
       const response = await axiosPrivate.post(
         APIS.update,
@@ -228,6 +231,7 @@ const CategoriesScreen = () => {
     setDescriptionEN(item === undefined ? "" : item.description.en);
     setImage(item === undefined ? "" : item.image);
     setStep(item === undefined ? "" : item.step_number);
+    setLimit(item === undefined ? "" : item.daily_limit);
   };
 
   const values = [
@@ -295,6 +299,13 @@ const CategoriesScreen = () => {
       type: "textinput",
       state: step,
       setState: setStep,
+    },
+    {
+      title: "Günlük Limit",
+      value: "daily_limit",
+      type: "textinput",
+      state: limit,
+      setState: setLimit,
     },
     {
       title: "Oluştulma Tarihi",

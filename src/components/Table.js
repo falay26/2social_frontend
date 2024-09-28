@@ -24,13 +24,13 @@ const ItemReturner = ({
   if (value.is_phone) {
     let formatted_phone_number =
       "+90 " +
-      data[value.value].substring(0, 3) +
+      data[value.value]?.substring(0, 3) +
       " " +
-      data[value.value].substring(3, 6) +
+      data[value.value]?.substring(3, 6) +
       " " +
-      data[value.value].substring(6, 8) +
+      data[value.value]?.substring(6, 8) +
       " " +
-      data[value.value].substring(8, 10);
+      data[value.value]?.substring(8, 10);
     return <td>{formatted_phone_number}</td>;
   } else if (value.is_birth) {
     let formatted_date = data[value.value]?.split("T")[0];
