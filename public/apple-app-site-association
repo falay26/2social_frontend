@@ -1,0 +1,22 @@
+{
+    "applinks": {
+        "details": [
+            {
+                "appIDs": [
+                    "FBRSKWPCJV.com.twosocial"
+                ],
+                "components": [
+                    {
+                        "/": "/*",
+                        "comment": "Matches any URL."
+                    }
+                ]
+            }
+        ]
+    },
+    "webcredentials": {
+        "apps": [
+            "FBRSKWPCJV.com.twosocial"
+        ]
+    }
+}

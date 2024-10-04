@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.twosocial",
+      "sha256_cert_fingerprints": [
+        "56:D7:49:86:B2:86:99:16:60:3A:13:F1:01:8A:68:0A:77:C5:0D:09:C2:00:8D:73:F2:37:64:5F:EE:0C:88:89"
+      ]
+    }
+  }
+]

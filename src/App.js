@@ -14,6 +14,8 @@ import Notifications from "./screens/NotificationsScreen";
 import Subscriptions from "./screens/SubscriptionsScreen";
 import Supports from "./screens/SupportsScreen";
 import Reports from "./screens/ReportsScreen";
+import Term from "./screens/TermScreen";
+import Contact from "./screens/ContactScreen";
 //Old Components
 import PersistLogin from "./components/olds/PersistLogin";
 import RequireAuth from "./components/olds/RequireAuth";
@@ -34,7 +36,11 @@ function App() {
     },
     {
       path: "privacy_policy",
-      element: null, //This is for privacy policy or other terms..
+      element: <Term />,
+    },
+    {
+      path: "contact_us",
+      element: <Contact />,
     },
     {
       path: "admin",
