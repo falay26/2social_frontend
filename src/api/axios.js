@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://twosocial-5c6cdd299830.herokuapp.com";
+const BASE_URL = "https://twosocial-c8ea523d6f26.herokuapp.com";
 
 export default axios.create({
   baseURL: BASE_URL,
